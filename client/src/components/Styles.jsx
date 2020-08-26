@@ -1,17 +1,19 @@
-import React from "react";
+/* eslint-disable */ 
+
+import React from 'react';
 
 const Styles = ({ selectedStyle, styles, changeStyle }) => (
   <div className="componentContainer">
     <div id="styleName">
       <span>
-        <b>STYLE&nbsp;></b>
+        <b>STYLE&nbsp;</b>
       </span>
       &nbsp;&nbsp;
       <span>{selectedStyle.name.toUpperCase()}</span>
     </div>
     <div id="selectorButtons">
       <button
-        autoFocus //render first btn separately so can add autofocus
+        autoFocus // render first btn separately so can add autofocus
         style={{ backgroundImage: `URL(${styles[0].photos[0].thumbnail_url})` }}
         id="btn"
         onClick={() => changeStyle(styles[0].style_id)}
@@ -19,7 +21,7 @@ const Styles = ({ selectedStyle, styles, changeStyle }) => (
       >
         {selectedStyle.style_id === styles[0].style_id ? (
           <div className="overlay">
-            <i className="fas fa-check-circle"></i>
+            <i className="fas fa-check-circle" />
           </div>
         ) : null}
       </button>
@@ -36,11 +38,11 @@ const Styles = ({ selectedStyle, styles, changeStyle }) => (
               >
                 {selectedStyle.style_id === style.style_id ? (
                   <div className="overlay">
-                    <i className="fas fa-check-circle"></i>
+                    <i className="fas fa-check-circle" />
                   </div>
                 ) : null}
               </button>
-              <div className="break"></div>
+              <div className="break" />
             </div>
           );
         }

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage --verbose",
-    "build": "webpack -d --watch",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --port 3001 --save-dev --open && webpack -d --watch --no-verify"
   },
   "keywords": [],
   "author": "",
