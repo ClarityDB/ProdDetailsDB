@@ -42,9 +42,9 @@ class App extends React.Component {
     this.apiRequests(this.props.match.params.productId);
   }
 
-  apiRequests(id = 5) {
+  apiRequests(id = 2) {
     axios
-      .get(`http://52.26.193.201:3000/products/${id}`)
+      .get(`/products/${id}`)
       .then((res) => {
         this.setState({
           productID: id,
@@ -54,7 +54,7 @@ class App extends React.Component {
       .catch(() => console.log('error1'));
 
     axios
-      .get(`http://52.26.193.201:3000/products/${id}/styles`)
+      .get(`/products/${id}/styles`)
       .then((res) => res.data.results)
       .then((results) => {
         let selected = null;
@@ -80,7 +80,7 @@ class App extends React.Component {
       .catch(() => console.log('error2'));
 
     axios
-      .get(`http://52.26.193.201:3000/reviews/${id}/list`)
+      .get(`/reviews/${id}/list`)
       .then((res) => {
         this.setState({
           reviews: res.data,
