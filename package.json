@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage --verbose",
-    "start": "webpack-dev-server --port 3001 --save-dev --open",
     "react-dev": "webpack -d --watch",
     "start:server": "nodemon server.js"
   },
