@@ -17,20 +17,26 @@ The Product Overview includes:
 
 ROUTES
 
-There are 4 routes required here:
+There are 4  /products/list, /products/:product_id, /products/:product_id/styles, and /reviews/:product_id/list  routes required here:
 
-1. List Products
-GET /products/list Retrieves the list of products.
+# Products Overview Routes
+### List Products
+
+`GET /products/list`
+Retrieves the list of products.
 
 Parameters
 
-Parameter	 Type	     Description
-page	     integer	 Selects the page of results to return. Default 1.
-count	     integer	 Specifies how many results per page to return. Default 5.
+| Parameter | Type    | Description                                               |
+| --------- | ------- | --------------------------------------------------------- |
+| page      | integer | Selects the page of results to return.  Default 1.        |
+| count     | integer | Specifies how many results per page to return. Default 5. |
 
 Response
-Status: 200 OK
 
+`Status: 200 OK `
+
+```json
 [
   {
 		"id": 1,
@@ -48,22 +54,35 @@ Status: 200 OK
 		"category": "Accessories",
 		"default_price": "69"
 	},
-  // ...
+  {
+		"id": 3,
+		"name": "Morning Joggers",
+		"slogan": "Make yourself a morning person",
+		"description": "Whether you're a morning person or not. Whether you're gym bound or not. Everyone looks good in joggers.",
+		"category": "Pants",
+		"default_price": "40"
+	},
+	// ...
 ]
+```
 
-2. Product Information
+### Product Information
+
 Returns all product level information for a specified product id.
 
-GET /products/:product_id
+`GET /products/:product_id`
 
 Parameters
 
-Parameter	    Type	    Description
-product_id	  integer	  Required ID of the Product requested
+| Parameter  | Type    | Description                          |
+| ---------- | ------- | ------------------------------------ |
+| product_id | integer | Required ID of the Product requested |
 
 Response
-Status: 200 OK
 
+`Status: 200 OK `
+
+```json
 {
 	"id": 11,
 	"name": "Air Minis 250",
@@ -83,20 +102,25 @@ Status: 200 OK
   	// ...
 	],
 }
+```
 
-3. Product Styles
+### Product Styles
+
 Returns the all styles available for the given product.
 
-GET /products/:product_id/styles
+`GET /products/:product_id/styles`
 
 Parameters
 
-Parameter	   Type    	Description
-product_id	 integer	Required ID of the Product requested
+| Parameter  | Type    | Description                          |
+| ---------- | ------- | ------------------------------------ |
+| product_id | integer | Required ID of the Product requested |
 
 Response
-Status: 200 OK
 
+`Status: 200 OK `
+
+```json
 {
 	"product_id": "1",
 	"results": [
@@ -149,22 +173,26 @@ Status: 200 OK
 	},
   // ...
 }
+```
 
-4. List Reviews
-GET /reviews/:product_id/list
+### List Reviews
+Returns a list of reviews for a particular product.  This list *does not* include any reported reviews.
+`GET /reviews/:product_id/list`
 
 Parameters
 
-Parameter	   Type    	Description
-product_id	 integer	Specifies the product for which to retrieve reviews.
-page	       integer	Selects the page of results to return. Default 1.
-count	       integer	Numb of results per page to return. Default 5.
-sort	       text	    Sorts the reviews to be based on 
-                      "newest", "helpful", or "relevant"
+| Parameter  | Type    | Description                                                  |
+| ---------- | ------- | ------------------------------------------------------------ |
+| product_id | integer | Specifies the product for which to retrieve reviews.         |
+| page       | integer | Selects the page of results to return.  Default 1.           |
+| count      | integer | Specifies how many results per page to return. Default 5.    |
+| sort       | text    | Changes the sort order of reviews to be based on "newest", "helpful", or "relevant" |
 
 Response
-Status: 200 OK
 
+`Status: 200 OK `
+
+```json
 {
   "product": "2",
   "page": 0,
@@ -206,6 +234,7 @@ Status: 200 OK
     // ...
   ]
 }
+```
 
 SCRIPTS
 
