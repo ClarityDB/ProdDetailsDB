@@ -17,7 +17,7 @@ The Product Overview includes:
 
 ROUTES
 
-There are 4  /products/list, /products/:product_id, /products/:product_id/styles, and /reviews/:product_id/list  routes required here:
+There are 4  /products/list, /products/:product_id, /products/:product_id/styles, and /reviews/:product_id/list routes required here:
 
 # Products Overview Routes
 ### List Products
