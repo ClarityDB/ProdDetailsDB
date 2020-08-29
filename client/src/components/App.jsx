@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.apiRequests(2);
+    this.apiRequests(1);
   }
 
   apiRequests(id = 1) {
@@ -50,6 +50,7 @@ class App extends React.Component {
     axios
       .get(`/products/${id}`)
       .then((res) => {
+        console.log("prodID", res.data);
         this.setState({
           productID: id,
           product: res.data,

@@ -4,7 +4,8 @@ var express = require("express");
 var app = express();
 const path = require("path");
 const PORT = 3001;
-const { Product, Style } = require("./DataBase/prodListModel");
+const Product = require("./DataBase/prodListModel.js");
+const Style = require("./DataBase/stylesModel.js");
 
 app.use(express.static(path.join(__dirname, "./client/public")));
 app.use(express.json());
@@ -20,6 +21,7 @@ app.get('/products/list', (req, res) => {
       })
       res.status(200).send(data)
     })
+    .catch((err) => console.log("err"))
 });
 
 app.get('/products/:product_id', (req, res) => {
@@ -35,12 +37,12 @@ app.get('/products/:product_id', (req, res) => {
 app.get('/products/:product_id/styles', (req, res) => {
   let curID = req.params.product_id;
   Style
-    .find({id:curID})
+    .find({product_id:curID})
     .exec()
     .then((data) => {
       let styleData = {
-        product_id: `${data[0].id}`,
-        results: data[0].styles,
+        product_id: data[0].product_id,
+        results: data[0].results,
       }
       res.status(200).send(
         styleData
