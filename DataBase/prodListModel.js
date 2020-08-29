@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
+const Schema = mongoose.Schema;
+mongoose.connect('mongodb://localhost:27017/products', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const PhotoSchema = new Schema({
   thumbnail_url: String,
@@ -25,7 +26,7 @@ const StyleSchema = new Schema({
 })
 
 const ProductSchema = new Schema({
-  id: Number, 
+  id: Number,
   name: String,
   slogan: String,
   description: String,
@@ -41,4 +42,127 @@ const FullStyleSchema = new Schema({
 
 const Product = mongoose.model('Product', ProductSchema)
 const Style = mongoose.model('Style', FullStyleSchema)
-module.export = { Product, Style };
+module.exports = { Product, Style };
+
+const testProd = new Product(
+  {
+    id: 2,
+    name: "lynn",
+    slogan: "I dont know but ",
+    description: "Awesome stuff I dont know but I love it! It is just amazing!!!!!!!!!!",
+    category: "good",
+    default_price: "10",
+    features: [
+      {
+        feature: "heart",
+        value: "goldenjfdkl",
+      },
+      {
+        feature: "fights like",
+        value: "wonder woman",
+      },
+      {
+        feature: "better than",
+        value: "everyone",
+      }
+    ]
+  }
+)
+
+const testStyle = new Style(
+  {
+    id: 2,
+    styles: [
+      {
+        style_id: 1,
+        name: "idk",
+        original_price: "100",
+        sale_price: "0",
+        'default?': 1,
+        photos: [
+          {
+            thumbnail_url: 'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=8aae34cf35df31a592f0bef16e6342ef',
+            url: "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92f3e02f63678acc8416d044e189f515",
+          },          {
+            thumbnail_url: 'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=8aae34cf35df31a592f0bef16e6342ef',
+            url: "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92f3e02f63678acc8416d044e189f515",
+          }
+        ],
+        skus: {
+          "XS": 12,
+          "S": 42,
+          "M": 112,
+          "L": 212,
+          "XL": 22,
+        },
+
+      },
+      {
+        style_id: 2,
+        name: "idkandmore",
+        original_price: "100",
+        sale_price: "0",
+        'default?': 0,
+        photos: [
+          {
+            thumbnail_url: 'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=8aae34cf35df31a592f0bef16e6342ef',
+            url: "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92f3e02f63678acc8416d044e189f515",
+          }
+        ],
+        skus: {
+          "XS": 15,
+          "S": 13,
+          "M": 12,
+          "L": 11,
+          "XL": 120,
+        },
+
+      },
+      {
+        style_id: 3,
+        name: "idkadult",
+        original_price: "200",
+        sale_price: "150",
+        'default?': 0,
+        photos: [
+          {
+            thumbnail_url: 'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=8aae34cf35df31a592f0bef16e6342ef',
+            url: "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92f3e02f63678acc8416d044e189f515",
+          }
+        ],
+        skus: {
+          "XS": 20,
+          "S": 30,
+          "M": 40,
+          "L": 50,
+          "XL": 60,
+        },
+
+      },
+      {
+        style_id: 4,
+        name: "moreadult",
+        original_price: "201",
+        sale_price: "199",
+        'default?': 0,
+        photos: [
+          {
+            thumbnail_url: 'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=8aae34cf35df31a592f0bef16e6342ef',
+            url: "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92f3e02f63678acc8416d044e189f515",
+          }
+        ],
+        skus: {
+          "XS": 15,
+          "S": 41,
+          "M": 31,
+          "L": 21,
+          "XL": 11,
+        },
+
+      }
+    ],
+  })
+
+
+// testProd.save().then((data) => console.log(data));
+// testStyle.save().then(() => console.log('fired'));

@@ -39,10 +39,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.apiRequests(this.props.match.params.productId);
+    this.apiRequests(1);
   }
 
-  apiRequests(id = 2) {
+  apiRequests(id = 1) {
+    axios
+      .get(`/products/list`)
+      .then((data) => console.log(data))
+    
     axios
       .get(`/products/${id}`)
       .then((res) => {
