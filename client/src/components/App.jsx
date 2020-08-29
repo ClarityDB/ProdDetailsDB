@@ -39,18 +39,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.apiRequests(1);
+    this.apiRequests(this.props.match.params.productId);
   }
 
-  apiRequests(id = 1) {
-    axios
-      .get(`/products/list`)
-      .then((data) => console.log(data))
-    
+  apiRequests(id = 2) {
     axios
       .get(`/products/${id}`)
       .then((res) => {
-        console.log("prodID", res.data);
         this.setState({
           productID: id,
           product: res.data,

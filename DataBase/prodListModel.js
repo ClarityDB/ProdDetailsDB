@@ -1,14 +1,31 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost:27017/products', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
+
+const PhotoSchema = new Schema({
+  thumbnail_url: String,
+  url: String,
+})
+
+// const skusSchema = new Schema({ any: mongoose.Mixed });
 
 const FeatureSchema = new Schema({
   feature: String,
   value: String,
 });
 
+const StyleSchema = new Schema({
+  style_id: Number,
+  name: String,
+  original_price: String,
+  sale_price: String,
+  'default?': Number,
+  photos: [PhotoSchema],
+  skus: {},
+
+})
+
 const ProductSchema = new Schema({
-  id: Number,
+  id: Number, 
   name: String,
   slogan: String,
   description: String,
@@ -17,33 +34,11 @@ const ProductSchema = new Schema({
   features: [FeatureSchema],
 });
 
+const FullStyleSchema = new Schema({
+  id: Number,
+  styles: [StyleSchema],
+})
 
 const Product = mongoose.model('Product', ProductSchema)
-module.exports = Product;
-
-// const testProd = new Product(
-//   {
-//     id: 1,
-//     name: "lynn",
-//     slogan: "I dont know but ",
-//     description: "Awesome stuff I dont know but I love it! It is just amazing!!!!!!!!!!",
-//     category: "good",
-//     default_price: "10",
-//     features: [
-//       {
-//         feature: "heart",
-//         value: "goldenjfdkl",
-//       },
-//       {
-//         feature: "fights like",
-//         value: "wonder woman",
-//       },
-//       {
-//         feature: "better than",
-//         value: "everyone",
-//       }
-//     ]
-//   }
-// )
-
-// testProd.save().then((data) => console.log(data));
+const Style = mongoose.model('Style', FullStyleSchema)
+module.export = { Product, Style };
