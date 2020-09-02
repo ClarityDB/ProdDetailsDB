@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.apiRequests(1);
+    this.apiRequests(3);
   }
 
   apiRequests(id = 1) {
