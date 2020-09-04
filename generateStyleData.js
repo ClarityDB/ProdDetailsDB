@@ -2,17 +2,17 @@
 const fs = require('fs');
 const faker = require('faker');
 
-const qty = 10000000;
+const qty = 1000000;
 
 const randNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const genStyle = (quantity) => {
-  const outStyle = fs.createWriteStream('./DataBase/stylesData.json', { flags: 'a' });
+  const outStyle = fs.createWriteStream('./DataBase/stylesData1000000.json', { flags: 'a' });
   try {
     let batchStyleResults = [];
 
     for (let i = 0; i < quantity; i++) {
-      let curStyle = {
+      const curStyle = {
         product_id: i,
         results: [],
       };
@@ -61,11 +61,14 @@ const genStyle = (quantity) => {
           },
         );
       }
-      
+
       batchStyleResults.push(JSON.stringify(curStyle));
       // write in JSON file
-      if (i === qty - 1) {
-        outStyle.write(`${batchStyleResults.join(',\n')}`);
+      if (i === 0) {
+        outStyle.write(`[\n${batchStyleResults.join(',\n')},\n`);
+        batchStyleResults = [];
+      } else if (i === qty - 1) {
+        outStyle.write(`${batchStyleResults.join(',\n')}\n]`);
         batchStyleResults = [];
       } else if (i % 50000 === 0) {
         outStyle.write(`${batchStyleResults.join(',\n')},\n`);

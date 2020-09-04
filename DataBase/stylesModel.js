@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost:27017/products', { useNewUrlParser: true, 
 const PhotoSchema = new Schema({
   thumbnail_url: String,
   url: String,
-})
+});
 
 const StyleSchema = new Schema({
   style_id: Number,
@@ -16,15 +16,14 @@ const StyleSchema = new Schema({
   photos: [PhotoSchema],
   skus: {},
 
-})
-
+});
 
 const FullStyleSchema = new Schema({
   product_id: Number,
   results: [StyleSchema],
-})
+});
 
-const Style = mongoose.model('Style', FullStyleSchema)
+const Style = mongoose.model('Style', FullStyleSchema);
 
 module.exports = Style;
 
