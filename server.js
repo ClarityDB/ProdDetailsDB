@@ -11,18 +11,18 @@ app.use(express.static(path.join(__dirname, "./client/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/products/list', (req, res) => {
-  Product
-    .find({})
-    .exec()
-    .then((data) => {
-      data.forEach(obj => {
-        delete obj.features
-      })
-      res.status(200).send(data)
-    })
-    .catch((err) => console.log("err"))
-});
+// app.get('/products/list', (req, res) => {
+//   Product
+//     .find({})
+//     .exec()
+//     .then((data) => {
+//       data.forEach(obj => {
+//         delete obj.features
+//       })
+//       res.status(200).send(data)
+//     })
+//     .catch((err) => console.log("err"))
+// });
 
 app.get('/products/:product_id', (req, res) => {
   let curID = req.params.product_id;
