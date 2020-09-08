@@ -37,20 +37,21 @@ class App extends React.Component {
     this.addToCartHandler = this.addToCartHandler.bind(this);
     this.scrollClickHandler = this.scrollClickHandler.bind(this);
   }
-
+  
+  
   componentDidMount() {
-    this.apiRequests(3);
+    this.apiRequests(Math.floor(Math.random() * (10 ** 7)));
   }
 
   apiRequests(id = 1) {
     axios
       .get(`/products/list`)
-      .then((data) => console.log(data))
+      .then((data) => console.log("prod list api res", data.data))
     
     axios
       .get(`/products/${id}`)
       .then((res) => {
-        console.log("prodID", res.data);
+        console.log('prodID', id, res.data.name)
         this.setState({
           productID: id,
           product: res.data,
@@ -62,6 +63,7 @@ class App extends React.Component {
       .get(`/products/${id}/styles`)
       .then((res) => res.data.results)
       .then((results) => {
+        console.log("styles", results[0].name)
         let selected = null;
         for (let i = 0; i < results.length; i++) {
           if (results[i]['default?']) {
