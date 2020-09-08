@@ -1,7 +1,7 @@
 const fs = require('fs');
 const faker = require('faker');
 
-const qty = 1000000;
+const qty = 10000000;
 
 // caching random responses for later use
 const randNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
@@ -25,7 +25,7 @@ for (let i = 0; i < attributes.maxValue; i++) {
 }
 
 const genProduct = (quantity) => {
-  const outProd = fs.createWriteStream('./DataBase/productListData1000000.json', { flags: 'a' });
+  const outProd = fs.createWriteStream('./DataBase/productListData.json', { flags: 'a' });
   try {
     // const productsList = [];
     let numOfFeatures;
@@ -74,4 +74,3 @@ genProduct(qty);
 const prodEnd = Date.now();
 
 console.log('prod time: ', prodEnd - start);
-// console.log('style time: ', styleEnd - prodEnd);

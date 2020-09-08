@@ -11,18 +11,26 @@ app.use(express.static(path.join(__dirname, "./client/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.get('/products/list', (req, res) => {
-//   Product
-//     .find({})
-//     .exec()
-//     .then((data) => {
-//       data.forEach(obj => {
-//         delete obj.features
-//       })
-//       res.status(200).send(data)
-//     })
-//     .catch((err) => console.log("err"))
-// });
+app.get('/products/list', (req, res) => {
+  let page = req.params.page || 1;
+  let count = req.params.count || 5;
+  let startID = ( page - 1 ) * count;
+  let endID = startID + count - 1;
+  console.log('page', page, 'count', count)
+
+  Product
+    .find({id: { $gte: startID, $lte: endID } })
+    .exec()
+    .then((data) => {
+      data.forEach(obj => {
+        delete obj.features
+      })
+      console.log(data);
+      res.status(200).send(data);
+    })
+    .catch((err) => console.log("err"))
+    // .explain("executionStats")
+});
 
 app.get('/products/:product_id', (req, res) => {
   let curID = req.params.product_id;
@@ -32,6 +40,7 @@ app.get('/products/:product_id', (req, res) => {
     .then((data) => {
       res.status(200).send(data[0])
     })
+    // .explain("executionStats")
 });
 
 app.get('/products/:product_id/styles', (req, res) => {
@@ -48,6 +57,7 @@ app.get('/products/:product_id/styles', (req, res) => {
         styleData
       );
     })
+    // .explain("executionStats")
 });
 
 app.listen(PORT, () => {

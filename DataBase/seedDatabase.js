@@ -1,6 +1,6 @@
 const { spawn } = require('child_process');
 
-const seedProd = spawn('mongoimport', ['--jsonArray', '--db=products', '--collection=products', '--file=productListData1000000.json']);
+const seedProd = spawn('mongoimport', ['--jsonArray', '--db=products', '--collection=products', '--file=productListData.json']);
 
 seedProd.stdout.on('data', (data) => {
   console.log(`Prod stdout: ${data}`);
@@ -18,7 +18,7 @@ seedProd.on('close', (code) => {
   console.log(`Prod child process exited with code: ${code}`);
 });
 
-const seedStyles = spawn('mongoimport', ['--jsonArray', '--db=products', '--collection=styles', '--file=stylesData1000000.json']);
+const seedStyles = spawn('mongoimport', ['--jsonArray', '--db=products', '--collection=styles', '--file=stylesData.json']);
 
 seedStyles.stdout.on('data', (data) => {
   console.log(`Styles stdout: ${data}`);
